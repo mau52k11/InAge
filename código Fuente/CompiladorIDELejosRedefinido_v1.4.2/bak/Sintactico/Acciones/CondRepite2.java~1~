@@ -1,0 +1,22 @@
+package Sintactico.Acciones;
+
+public class TCondRepite2{
+  private Sintactico.TSintactico sintactico;
+  private int follow_set[]={135,124,129,125,127,22,104,128,121,120};//veces,inicio,si,mientras,repite,variable,primitiva
+  private int header_set[]={110,111};// finAccion,finAcciones
+
+  public TCondRepite2(Sintactico.TSintactico sint){
+  sintactico = sint;
+  }
+
+  public void analisis()throws Exception{
+  Sintactico.TOperacion operacion = new Sintactico.TOperacion(sintactico);
+  TInstrucciones2 instrucciones2 = new TInstrucciones2(sintactico);
+  sintactico.comparar(127);//repite
+  operacion.analisis();
+  sintactico.verifica_entrada(135, follow_set, header_set);
+  sintactico.comparar(135);//veces
+  instrucciones2.analisis();
+  }
+
+}// fin de la clase TCondRepite2

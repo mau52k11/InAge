@@ -1,0 +1,6 @@
+package IDE;
+
+public class JColorPR {
+  public JColorPR() {
+  }
+}

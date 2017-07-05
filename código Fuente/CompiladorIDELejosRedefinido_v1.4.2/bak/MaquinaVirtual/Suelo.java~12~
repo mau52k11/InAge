@@ -1,0 +1,65 @@
+package MaquinaVirtual;
+
+import java.awt.Graphics2D;
+import java.awt.geom.*;
+import java.awt.Color;
+
+public class Suelo {
+
+  int x, y; // coordenadas del suelo con respecto a la ventana
+  int width, height;
+  int paso;
+  public Graphics2D grafico;
+
+  public Suelo(int x_suelo, int y_suelo, int w, int h, int paso, Graphics2D g){
+    x = x_suelo;
+    y = y_suelo;
+    width = w;
+    height = h;
+    this.paso = paso;
+    grafico = g;
+  }
+
+  public int getX(){
+    return x;
+  }
+
+  public int getY(){
+    return y;
+  }
+
+  public int getWidth(){
+    return width;
+  }
+
+  public int getHeight(){
+    return height;
+  }
+
+  public int getPaso(){
+    return paso;
+  }
+
+  public void dibujaSuelo(){
+    int i;
+    espacioGrafico();
+    grafico.setColor(Color.blue); // especifica el color del espacio gráfico
+    grafico.fillRect(x,y,width,height); // Hace un rectánculo, y lo colorea de azul
+
+    // Ciclos para hacer los cuadros del suelo
+    grafico.setColor(Color.black); // especifica el color del espacio gráfico
+    for(i=0; i<=width; i= i+paso){
+      grafico.drawLine(x+i, y, x+i, y+height); // dibuja la línea
+    }
+    for(i=0; i<height; i= i+paso){
+      grafico.drawLine(x, y+i, x+width, y+i); // dibuja la línea
+    }
+  }
+
+  private void espacioGrafico(){
+    Rectangle2D suelo = new Rectangle2D.Float(x,y,width,height); // (x, y, width, height)
+    grafico.setClip(suelo); // especifica el espacio donde se editará el gráfico, será de acuerdo a la figua Rectangle2D
+  }
+
+
+}

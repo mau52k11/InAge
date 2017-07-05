@@ -1,0 +1,82 @@
+sociedad:
+
+  agente agente1:
+
+    evitar_obstaculos;
+
+    caminar; 
+
+  finAgente 
+ 
+
+finSociedad
+
+ 
+
+comportamiento:
+
+ 
+
+ tactil sensor_frente(SENSOR_1);
+ 
+
+  conducta caminar: 
+
+          si sensor_frente == 1 entonces
+
+             solicita giraIzquierda;
+
+          otro 
+
+             solicita dar_un_paso;
+
+  finConducta
+
+ 
+
+  conducta evitar_obstaculos:
+
+     si sensor_frente == 12 entonces
+
+        solicita giraDerecha;
+
+ 
+
+  finConducta
+
+ 
+
+finComportamiento
+
+ 
+
+acciones:
+
+ 
+
+  accion dar_un_paso:
+
+     avanza;
+
+  finAccion
+
+ 
+
+  accion giraDerecha:
+
+     repite 2 veces
+	giraDer;  
+
+  finAccion
+
+   accion giraIzquierda:
+
+     repite 2 veces
+	giraIzq;  
+
+  finAccion
+
+finAcciones
+
+ 
+

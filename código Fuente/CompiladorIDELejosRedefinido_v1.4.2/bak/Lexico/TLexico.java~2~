@@ -1,0 +1,70 @@
+package Lexico;
+
+public class TLexico{
+  public int pr;
+  public int token;
+  public int renglon;
+  public String cadena;
+  private TFuente archivo;
+  private TTransiciones tabla;
+  private TPReservadas palabras;
+  private Herramientas.TTSimbolos tabla_simbolos;
+
+  public TLexico(String ruta, Herramientas.TErrores error, Herramientas.TTSimbolos t_s){
+    String ruta_PR= "cfg";  //"C:\\compilador_IDE\\src\\Lexico"
+    archivo = new TFuente(ruta, error);
+    if(error.vacio()){
+      tabla = new TTransiciones(error);
+      palabras = new TPReservadas(ruta_PR, error);
+      tabla_simbolos = t_s;
+    }
+  }
+
+  public boolean getToken(){
+    boolean lee=true;
+    renglon=0;
+    pr = 0;
+    tabla.limpiar();
+    do{
+      if(archivo.lee_caracter()==1){
+        if(archivo.caracter == '\r'){
+          tabla.renglon++;
+          archivo.lee_caracter();
+          if(tabla.estado==0 || tabla.estado==2)
+            tabla.limpiar();
+          else{
+            renglon=-1;
+            tabla.estado_final=true;
+            }
+        }
+        else{
+          tabla.transicion(archivo.caracter);}
+        }
+      else{
+        tabla.estado_final=true;
+        if(tabla.estado==0)
+          lee = false;
+      }
+    }while(tabla.estado_final==false);
+    cadena=new String(tabla.cadena);
+    renglon = renglon + tabla.renglon;
+    token = tabla.estado;
+    if(tabla.reducir==true)
+      archivo.i--;
+    if(tabla.estado==22){
+      pr=palabras.buscar(cadena, cadena.length());
+      if(pr==0 & tabla_simbolos.buscar(cadena)==false)
+        tabla_simbolos.insertar(cadena,0,0);
+    }
+    return lee;
+  }// Fin del Método getToken
+
+  public void finalize(){
+    archivo=null;
+    tabla = null;
+    palabras = null;
+//    tabla_simbolos = null;
+    System.out.println("Finalizador de TLexico.");
+  }
+
+}// fin de la clase TLexico

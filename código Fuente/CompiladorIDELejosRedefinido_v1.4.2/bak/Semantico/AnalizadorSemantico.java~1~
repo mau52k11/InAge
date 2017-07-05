@@ -1,0 +1,16 @@
+package Semantico;
+
+public class JSemantico {
+  private Herramientas.TErrores errores;
+  private Herramientas.TErrores warnings;
+  private Herramientas.TTSimbolos tabla_simbolos;
+  private Herramientas.TCompSociedad lista_agentes;
+
+  public JSemantico(Herramientas.TCompSociedad agentes, Herramientas.TErrores err, Herramientas.TErrores warn) {
+//  tabla_simbolos = t_s;
+  errores = err;
+  warnings = warn;
+  lista_agentes = agentes;
+  }
+
+}

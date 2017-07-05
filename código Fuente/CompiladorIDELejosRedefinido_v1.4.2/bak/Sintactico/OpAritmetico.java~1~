@@ -1,0 +1,21 @@
+package Sintactico;
+
+public class TOpAritmetico{
+  private Sintactico.TSintactico sintactico;
+
+  public TOpAritmetico(Sintactico.TSintactico sint){
+  sintactico = sint;
+  }
+
+  public void analisis(){
+  if(sintactico.compara(5))// +
+     sintactico.comparar(5);
+  if(sintactico.compara(4))// -
+     sintactico.comparar(4);
+  if(sintactico.compara(3))// *
+     sintactico.comparar(3);
+  if(sintactico.compara(1))// /
+     sintactico.comparar(1);
+  }//fin de analisis()
+
+}// fin de la clase TOpAritmetico

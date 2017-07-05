@@ -1,0 +1,44 @@
+sociedad:
+  agente agente1:
+    evitar_obstaculos; 
+    girar;
+  finAgente
+
+  agente agente2:
+   girar; 
+   evitar_obstaculos;
+  finAgente
+
+finSociedad
+
+comportamiento:
+     tactil sensor_tactil(SENSOR_1);
+  conducta evitar_obstaculos: 
+     repite 5 veces
+        si !sensor_tactil entonces
+	   solicita vueltas;
+     solicita hacia_atras;
+  finConducta
+
+  conducta girar: 
+     si !sensor_tactil entonces
+	   solicita vueltas;
+  finConducta
+
+finComportamiento
+
+acciones:
+
+  accion vueltas:
+	repite 4 veces
+	   inicio
+	   giraIzq;
+           fin
+  finAccion
+
+  accion hacia_atras:
+        repite 10 veces
+            retrocede;
+  finAccion
+
+finAcciones

@@ -1,0 +1,31 @@
+package Sintactico.Comportamiento;
+
+public class TSolicita{
+  private Sintactico.TSintactico sintactico;
+  private int follow_set[]={22};//variable
+  private int header_set[]={113,114,102};// finConducta,finComportamiento,acciones
+
+  public TSolicita(Sintactico.TSintactico sint){
+  sintactico = sint;
+  }
+
+  public void analisis()throws Exception{
+  try{
+      int renIni=0, renFin=0;
+      renIni=sintactico.renglon();
+      sintactico.comparar(131);//solicita
+      sintactico.variables(0,3, follow_set, header_set);//acción
+    //  sintactico.comparar(19);
+      renFin=sintactico.renglon();
+      sintactico.compararDel(19,renIni,renFin);
+  }
+  catch(Sintactico.TExcepcionPR ex){
+    sintactico.error("No se permite usar Palabras Reservadas como variables");
+  }
+  catch(Sintactico.TExcepcionAtras ex){
+    sintactico.error("No especificó el nombre de la acción");
+//    sintactico.verifica_entrada(19, follow_set, header_set);
+  }
+  }
+
+}// fin de la clase TSolicita

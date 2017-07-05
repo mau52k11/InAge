@@ -1,0 +1,35 @@
+package Sintactico.Sociedad;
+
+public class TAgente{
+  private Sintactico.TSintactico sintactico;
+  private int follow_set[]={103};//finSociedad
+  private int header_set[]={106, 102};// comportamiento, acciones
+
+  public TAgente(Sintactico.TSintactico sint){
+  sintactico = sint;
+  }
+
+  public void analisis()throws Exception{
+  try{
+    int renIni=0, renFin=0;
+    TListaRobot ListaRobot= new TListaRobot(sintactico);
+    TListaConductas ListaConductas= new TListaConductas(sintactico);
+    sintactico.verifica_entrada(103, follow_set, header_set);
+    sintactico.comparar(103);
+    renIni=sintactico.renglon();
+    ListaRobot.analisis();
+    renFin=sintactico.renglon();
+    sintactico.compararDel(18,renIni,renFin);
+    ListaConductas.analisis();
+    sintactico.comparar(112);
+  }
+  catch(Sintactico.TExcepcionAtras ex){
+    sintactico.error("No declaró correctamente el agente");
+  }
+/*  catch(Exception e){
+    sintactico.error("No declaró correctamente un agente");
+  }*/
+
+  }
+
+}// fin de la clase TAgente

@@ -1,0 +1,15 @@
+[PropertyInfo]
+codigo,javax.swing.JTextArea,false,false, , ,false,<default>
+countErrores,int,false,false, , ,true,<default>
+countWarning,int,false,false, , ,true,<default>
+errores,Herramientas.TErrores,false,false, , ,false,<default>
+modificado,boolean,false,false, , ,true,<default>
+pantalla,JPantalla,false,false, , ,false,<default>
+ruta,String,false,false, , ,true,<default>
+scroll,javax.swing.JScrollPane,false,false, , ,false,<default>
+warnings,Herramientas.TErrores,false,false, , ,false,<default>
+[IconNames]
+
+
+
+

@@ -1,0 +1,19 @@
+package Sintactico.Comportamiento;
+
+public class TBloque{
+  private Sintactico.TSintactico sintactico;
+/*  private int follow_set[]={124,129,125,127,22};// inicio,si,mientras,repite,variable
+  private int header_set[]={114,102};// finComportamiento,acciones*/
+
+  public TBloque(Sintactico.TSintactico sint){
+  sintactico = sint;
+  }
+
+  public void analisis()throws Exception{
+  TInstruccionCiclo InstruccionCiclo= new TInstruccionCiclo(sintactico);
+  sintactico.comparar(124);
+  InstruccionCiclo.analisis();
+  sintactico.comparar(109);
+  }
+
+}// fin de la clase TBloque

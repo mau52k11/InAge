@@ -1,0 +1,47 @@
+society:
+
+  agent agent1:
+    avoid_obstacle;
+    walk;
+  endAgent
+
+  agent agent2:
+    avoid_obstacle;
+    walk;
+  endAgent
+
+endSociety
+
+behavior:
+ tactile sensor_front(SENSOR_1);
+ light sensor_light (SENSOR_2);
+
+  conduct walk:
+          if sensor_light == 1 then
+             solicit step_forward;
+          else
+             solicit turn;
+  endConduct
+
+  conduct avoid_obstacle:
+
+     if sensor_front == 1 then
+        solicit turn;
+  endConduct
+
+endBehavior
+
+actions:
+  action step_forward:
+
+     move;
+
+  endAction
+
+  action turn:
+
+     turnRight; 
+
+  endAction
+
+endActions

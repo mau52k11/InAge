@@ -1,0 +1,33 @@
+package Sintactico.Comportamiento;
+
+public class TElecExp{
+  private Sintactico.TSintactico sintactico;
+  private int follow_set[]={6,7,124,108,122};// op_logicos,inicio,entonces,hacer
+  private int header_set[]={113,114,102};// finConducta,finComportamiento,acciones
+
+  public TElecExp(Sintactico.TSintactico sint){
+  sintactico = sint;
+  }
+
+  public void analisis()throws Exception{
+  try{
+    int temp=0;
+    TIdSensor idSensor = new TIdSensor(sintactico);
+    Sintactico.TExpRelacional expRelacional = new Sintactico.TExpRelacional(sintactico);
+    if(sintactico.compara(22)){
+      temp=sintactico.es_variable();
+    }
+    if((temp>=4 & temp<=6) | sintactico.compara(10))
+      idSensor.analisis();
+    else
+      expRelacional.analisis();
+    }
+  catch(Sintactico.TExcepcionAtras ex){
+    sintactico.error("No declaró correctamente la condición");
+  }
+  catch(Sintactico.TExcepcionPR ex){
+    sintactico.error("No se pueden utilizar palabras reservadas como variables");
+  }
+  }//fin de analisis()
+
+}// fin de la clase TInstrucciones

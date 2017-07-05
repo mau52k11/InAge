@@ -1,0 +1,8 @@
+package Sintactico;
+
+public class TExcepcionSociedad extends TGrupoExcepcion{
+
+ TExcepcionSociedad() {
+  super();
+ }
+ }// Fin de la clase TExceptionSociedad

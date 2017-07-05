@@ -1,0 +1,26 @@
+package Sintactico.Comportamiento;
+
+public class TConductas{
+  private Sintactico.TSintactico sintactico;
+  private int follow_set[]={113,114};//finConducta, finComportamiento
+  private int header_set[]={102};// acciones
+
+  public TConductas(Sintactico.TSintactico sint){
+  sintactico = sint;
+  }
+
+  public void analisis()throws Exception{
+  try{
+    TConducta conducta= new TConducta(sintactico);
+    do{
+      conducta.analisis();
+      sintactico.verifica_entrada(105, follow_set, header_set);
+    }while(sintactico.compara(105));
+  }
+  catch(Sintactico.TExcepcionAtras ex){
+    sintactico.error("No Finalizó correctamente la declaración de conductas");
+  }
+
+  }
+
+}// fin de la clase TConductas

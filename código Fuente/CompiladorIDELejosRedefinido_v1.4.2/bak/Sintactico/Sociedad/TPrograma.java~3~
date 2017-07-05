@@ -1,0 +1,27 @@
+package Sintactico.Sociedad;
+
+public class TPrograma{
+  private Sintactico.TSintactico sintactico;
+
+  public TPrograma(Lexico.AnalizadorLexico lexx, Herramientas.TablaSimbolos t_s, Herramientas.Errores err, Herramientas.Errores warn){
+  sintactico= new Sintactico.TSintactico(lexx, t_s, err, warn);
+  }
+
+  public void analisis(){
+  try{
+  TInicio inicio= new TInicio(sintactico);
+  inicio.analisis();
+  sintactico.comparar(0);
+  }
+  catch(Sintactico.TExcepcionTerminar ex){
+    sintactico.error("El programa no está completo");
+  }
+  catch(Sintactico.TExcepcionAtras ex){
+    sintactico.error("TExcepcionAtras TPrograma.java");
+  }
+  catch(Exception e){
+    sintactico.error("Exception e TPrograma.java");
+  }
+  }
+
+}// fin de la clase TSintactico

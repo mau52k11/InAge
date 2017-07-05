@@ -1,0 +1,25 @@
+package Sintactico.Acciones;
+
+public class TDeclAccion{
+  private Sintactico.TSintactico sintactico;
+  private int follow_set[]={110,111};//finAccion, finAcciones
+  private int header_set[]={};
+
+  public TDeclAccion(Sintactico.TSintactico sint){
+  sintactico = sint;
+  }
+
+  public void analisis()throws Exception{
+  try{
+    TAccion accion = new TAccion(sintactico);
+    do{
+      accion.analisis();
+      sintactico.verifica_entrada(101, follow_set, header_set);
+    }while(sintactico.compara(101));
+  }
+  catch(Sintactico.TExcepcionAtras ex){
+    sintactico.error("No Finalizó correctamente la declaración de acciones");
+  }
+  }
+
+}// fin de la clase TDeclAccion

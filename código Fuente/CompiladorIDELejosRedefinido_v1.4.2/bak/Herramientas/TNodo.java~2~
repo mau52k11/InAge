@@ -1,0 +1,33 @@
+package Herramientas;
+
+class TNodo{
+  public int tam;
+  public TNodo der;
+  public TNodo izq;
+  public int numero;
+  public String palabra;
+
+  // Constructor de un nodo
+  public TNodo(String dato, int j, int i){
+    palabra = dato;
+    numero = j;
+    tam = i;
+    izq=der=null;
+  }
+
+  public void insert(String dato, int j, int i){
+    if(i < tam){      // Nodo izquierdo es menor
+      if(izq ==null)
+        izq = new TNodo(dato, j, i);
+      else
+        izq.insert(dato, j, i);
+    }
+    else {            // Nodo derecho es mayor o igual
+      if(der == null)
+        der = new TNodo(dato, j, i);
+      else
+        der.insert(dato, j, i);
+    }
+  }// fin del método insert
+
+}

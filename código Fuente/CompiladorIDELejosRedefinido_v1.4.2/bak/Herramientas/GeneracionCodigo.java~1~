@@ -1,0 +1,10 @@
+package Herramientas;
+
+public class JGCodigo {
+  private TCompSociedad lista_agentes;
+
+  public JGCodigo(TCompSociedad agentes) {
+  lista_agentes = agentes;
+  }
+
+}

@@ -1,0 +1,25 @@
+package Sintactico;
+
+public class TOpRelacional{
+  private Sintactico.TSintactico sintactico;
+
+  public TOpRelacional(Sintactico.TSintactico sint){
+  sintactico = sint;
+  }
+
+  public void analisis(){
+  if(sintactico.compara(12))// <
+     sintactico.comparar(12);
+  if(sintactico.compara(8))// >
+     sintactico.comparar(8);
+  if(sintactico.compara(13))// <=
+     sintactico.comparar(13);
+  if(sintactico.compara(9))// >=
+     sintactico.comparar(9);
+  if(sintactico.compara(15))// ==
+     sintactico.comparar(15);
+  if(sintactico.compara(11))// !=
+     sintactico.comparar(11);
+  }//fin de analisis()
+
+}// fin de la clase TOpRelacional

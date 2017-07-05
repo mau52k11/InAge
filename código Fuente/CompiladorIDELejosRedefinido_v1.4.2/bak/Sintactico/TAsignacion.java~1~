@@ -1,0 +1,25 @@
+package Sintactico;
+
+public class TAsignacion{
+  private Sintactico.TSintactico sintactico;
+  private int follow_set[]={21,22,12,8,13,9,15,11,124,14};//num,variable, op_logicos, inicio, ";"
+  private int header_set[]={113,102,108,122};// finConducta,acciones,entonces,hacer
+
+  public TAsignacion(Sintactico.TSintactico sint){
+  sintactico = sint;
+  }
+
+  public void analisis()throws Exception{
+  int renIni=0, renFin=0;
+  TOperacion operacion = new TOperacion(sintactico);
+  renIni=sintactico.renglon();
+  if(sintactico.compara(22))
+      sintactico.existe_var_entero(7, follow_set, header_set);
+  sintactico.comparar(14);
+  operacion.analisis();
+//  sintactico.comparar(19);
+  renFin=sintactico.renglon();
+  sintactico.compararDel(19,renIni,renFin);
+  }//fin de analisis()
+
+}// fin de la clase TAsignacion

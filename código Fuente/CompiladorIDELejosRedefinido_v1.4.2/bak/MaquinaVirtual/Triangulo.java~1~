@@ -1,0 +1,6 @@
+package MaquinaVirtual;
+
+public class Triangulo {
+  public Triangulo() {
+  }
+}

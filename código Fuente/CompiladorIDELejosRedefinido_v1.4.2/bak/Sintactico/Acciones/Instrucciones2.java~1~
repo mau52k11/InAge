@@ -1,0 +1,29 @@
+package Sintactico.Acciones;
+
+public class TInstrucciones2{
+  private Sintactico.TSintactico sintactico;
+  private int follow_set[]={109,124,129,125,127,22,104,128,121,120,110};// fin,inicio,si,mientras,repite,variable,primitivas,finAccion
+  private int header_set[]={111};// finAcciones
+
+  public TInstrucciones2(Sintactico.TSintactico sint){
+  sintactico = sint;
+  }
+
+  public void analisis()throws Exception{
+  try{
+  TInstruccion2 instruccion2= new TInstruccion2(sintactico);
+  TBloque2 bloque2 = new TBloque2(sintactico);
+  sintactico.verifica_entrada(124, follow_set, header_set);
+  if(sintactico.compara(110)==false){
+      if(sintactico.compara(124))
+        bloque2.analisis();
+      else
+        instruccion2.analisis();
+//      sintactico.verifica_entrada(124, follow_set, header_set);
+  }
+  }catch(Sintactico.TExcepcionAtras ex){
+      sintactico.error("No especificó ninguna instrucción");
+  }
+  }//fin de analisis()
+
+}// fin de la clase TInstrucciones

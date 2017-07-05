@@ -1,0 +1,30 @@
+package Sintactico.Comportamiento;
+
+public class ExpSensor{
+  private Sintactico.AnalizadorSintactico sintactico;
+
+  public ExpSensor(Sintactico.AnalizadorSintactico sint){
+  sintactico = sint;
+  }
+
+  public void analisis()throws Exception{
+  try{
+    Sintactico.OpRelacional opRelacional = new Sintactico.OpRelacional(sintactico);
+    Sintactico.Numeros numeros = new Sintactico.Numeros(sintactico);
+    if(sintactico.compara(22)){
+      temp=sintactico.es_variable();
+    }
+    if((temp>=4 & temp<=6) || (temp>=9 & temp<=16) || sintactico.compara(10) )
+      idSensor.analisis();
+    else
+      expRelacional.analisis();
+    }
+  catch(Sintactico.ExcepcionAtras ex){
+    sintactico.error("No declaró correctamente la condición");
+  }
+  catch(Sintactico.ExcepcionPR ex){
+    sintactico.error("No se pueden utilizar palabras reservadas como variables");
+  }
+  }//fin de analisis()
+
+}// fin de la clase TInstrucciones

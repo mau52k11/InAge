@@ -1,0 +1,26 @@
+package Sintactico.Comportamiento;
+
+public class CondSi{
+  private Sintactico.AnalizadorSintactico sintactico;
+/*  private int follow_set[]={124,129,125,127,22};// inicio,si,mientras,repite,variable
+  private int header_set[]={114,102};// finComportamiento,acciones*/
+
+  public CondSi(Sintactico.AnalizadorSintactico sint){
+  sintactico = sint;
+  }
+
+  public void analisis()throws Exception{
+  Expresion expresion = new Expresion(sintactico);
+  Instrucciones instrucciones = new Instrucciones(sintactico);
+  sintactico.comparar(129);//si
+  expresion.analisis();
+  sintactico.comparar(108);//entonces
+  instrucciones.analisis();
+  if(sintactico.compara(126)){//otro
+     sintactico.comparar(126);
+     instrucciones.analisis();
+  }
+
+  }
+
+}// fin de la clase

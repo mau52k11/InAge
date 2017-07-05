@@ -1,0 +1,30 @@
+package Sintactico.Acciones;
+
+public class Primitivas{
+  private Sintactico.AnalizadorSintactico sintactico;
+
+  public Primitivas(Sintactico.AnalizadorSintactico sint){
+  sintactico = sint;
+  }
+
+  public void analisis(){
+  if(sintactico.compara(104)){  // avanza
+    sintactico.comparar(104);
+    sintactico.setAddGC(101+"1");
+  }
+  if(sintactico.compara(128)){  // retrocede
+    sintactico.comparar(128);
+    sintactico.setAddGC(102+"2");
+  }
+  if(sintactico.compara(121)){  // giraIzq
+    sintactico.comparar(121);
+    sintactico.setAddGC(103+"3");
+  }
+  if(sintactico.compara(120)){  // giraDer
+    sintactico.comparar(120);
+    sintactico.setAddGC(104+"4");
+  }
+  sintactico.comparar(19);// ;
+  }//fin de analisis()
+
+}// fin de la clase TPrimitivas

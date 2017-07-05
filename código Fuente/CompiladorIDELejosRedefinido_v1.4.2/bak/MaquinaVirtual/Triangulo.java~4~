@@ -1,0 +1,192 @@
+package MaquinaVirtual;
+
+import java.awt.Polygon;
+import java.awt.Graphics2D;
+import java.awt.Color;
+
+public class Triangulo extends Polygon {
+
+  // Constantes de orientación
+  final int NORTE = 1;
+  final int SUR = 2;
+  final int ESTE = 3;
+  final int OESTE = 4;
+
+  int a, b; // coordenadas donde se encuentra el agente
+  int orientacion;
+  Polygon objeto;
+  Color colorSuelo;
+  Color colorAgente;
+  Graphics2D grafico;
+  Suelo suelo;
+
+  public Triangulo(Suelo suelo, Graphics2D g2){
+    a=0;
+    b=0;
+    this.suelo = suelo;
+    orientacion = NORTE;
+    colorSuelo = Color.blue;
+    colorAgente = Color.red;
+    grafico = g2;
+  }
+
+  public void setOrientacion(int orient){
+    orientacion = orient;
+  }
+
+  /* Las siguientes dos funciones, dibujan un triángulo (agente)
+   * de acuerdo a las coordenas (a,b)
+   */
+
+  public void setLocation(int a, int b){
+    this.a = a;
+    this.b = b;
+    grafico.setColor(colorAgente); // especifica el color del espacio gráfico
+    grafico.fillPolygon(posicionObjeto());
+  }
+
+  public void setLocation(int a, int b, Color color){
+    this.a = a;
+    this.b = b;
+    grafico.setColor(color); // especifica el color del espacio gráfico
+    grafico.fillPolygon(posicionObjeto());
+  }
+
+  public void avanzar(){
+    switch(orientacion){         // Mueve al agente al nuevo estado
+      case NORTE:
+                 if(b > 0){
+                   setLocation(a,b,colorSuelo); // borra al agente en el estado actual
+                   setLocation(a, b - 1);
+                 }
+                 break;
+      case SUR:
+                 if(b+1 < suelo.getHeight()/suelo.getPaso()){
+                   setLocation(a,b,colorSuelo); // borra al agente en el estado actual
+                   setLocation(a, b + 1);
+                 }
+                 break;
+      case ESTE:
+                 if(a+1 < suelo.getWidth()/suelo.getPaso()){
+                   setLocation(a,b,colorSuelo); // borra al agente en el estado actual
+                   setLocation(a + 1, b);
+                 }
+                 break;
+      case OESTE:
+                 if(a > 0){
+                   setLocation(a,b,colorSuelo); // borra al agente en el estado actual
+                   setLocation(a-1,b);
+                 }
+                 break;
+    }
+  }
+
+  public void retroceder(){
+    switch(orientacion){         // Mueve al agente al nuevo estado
+      case NORTE:
+                 if(b+1 < suelo.getHeight()/suelo.getPaso()){
+                   setLocation(a,b,colorSuelo); // borra al agente en el estado actual
+                   setLocation(a, b + 1);
+                 }
+                 break;
+      case SUR:
+                 if(b > 0){
+                   setLocation(a,b,colorSuelo); // borra al agente en el estado actual
+                   setLocation(a, b - 1);
+                 }
+                 break;
+      case ESTE:
+                 if(a > 0){
+                   setLocation(a,b,colorSuelo); // borra al agente en el estado actual
+                   setLocation(a - 1, b);
+                 }
+                 break;
+      case OESTE:
+                 if(a+1 < suelo.getWidth()/suelo.getPaso()){
+                   setLocation(a,b,colorSuelo); // borra al agente en el estado actual
+                   setLocation(a+1,b);
+                 }
+                 break;
+    }
+  }
+
+  public void gira_izq(){
+    switch(orientacion){         // Mueve al agente al nuevo estado
+      case NORTE:
+                 setLocation(a,b,colorSuelo); // borra al agente en el estado actual
+                 orientacion = OESTE;
+                 setLocation(a,b);
+                 break;
+      case SUR:
+                 setLocation(a,b,colorSuelo); // borra al agente en el estado actual
+                 orientacion = ESTE;
+                 setLocation(a,b);
+                 break;
+      case ESTE:
+                 setLocation(a,b,colorSuelo); // borra al agente en el estado actual
+                 orientacion = NORTE;
+                 setLocation(a,b);
+                 break;
+      case OESTE:
+                 setLocation(a,b,colorSuelo); // borra al agente en el estado actual
+                 orientacion = SUR;
+                 setLocation(a,b);
+                 break;
+    }
+  }
+
+  public void gira_der(){
+    switch(orientacion){         // Mueve al agente al nuevo estado
+      case NORTE:
+                 setLocation(a,b,colorSuelo); // borra al agente en el estado actual
+                 orientacion = ESTE;
+                 setLocation(a,b);
+                 break;
+      case SUR:
+                 setLocation(a,b,colorSuelo); // borra al agente en el estado actual
+                 orientacion = OESTE;
+                 setLocation(a,b);
+                 break;
+      case ESTE:
+                 setLocation(a,b,colorSuelo); // borra al agente en el estado actual
+                 orientacion = SUR;
+                 setLocation(a,b);
+                 break;
+      case OESTE:
+                 setLocation(a,b,colorSuelo); // borra al agente en el estado actual
+                 orientacion = NORTE;
+                 setLocation(a,b);
+                 break;
+    }
+  }
+
+  public Polygon posicionObjeto(){
+    int espacio = 3;
+    objeto = new Polygon();
+    switch(orientacion){
+      case NORTE:
+                 objeto.addPoint((a*suelo.getPaso())+suelo.getX()+espacio,(b*suelo.getPaso())+suelo.getY()+suelo.getPaso()-espacio);
+                 objeto.addPoint((a*suelo.getPaso())+suelo.getX()+(suelo.getPaso()/2),(b*suelo.getPaso())+suelo.getY()+espacio);
+                 objeto.addPoint((a*suelo.getPaso())+suelo.getX()+suelo.getPaso()-espacio,(b*suelo.getPaso())+suelo.getY()+suelo.getPaso()-espacio);
+                 break;
+      case SUR:
+                 objeto.addPoint((a*suelo.getPaso())+suelo.getX()+espacio,(b*suelo.getPaso())+suelo.getY()+1+espacio);
+                 objeto.addPoint((a*suelo.getPaso())+suelo.getX()+(suelo.getPaso()/2),(b*suelo.getPaso())+suelo.getY()+suelo.getPaso()-espacio);
+                 objeto.addPoint((a*suelo.getPaso())+suelo.getX()+suelo.getPaso()-espacio,(b*suelo.getPaso())+suelo.getY()+1+espacio);
+                 break;
+      case ESTE:
+                 objeto.addPoint((a*suelo.getPaso())+suelo.getX()+espacio,(b*suelo.getPaso())+suelo.getY()+espacio);
+                 objeto.addPoint((a*suelo.getPaso())+suelo.getX()+espacio,(b*suelo.getPaso())+suelo.getY()+suelo.getPaso()-espacio);
+                 objeto.addPoint((a*suelo.getPaso())+suelo.getX()+suelo.getPaso()-espacio,(b*suelo.getPaso())+suelo.getY()+(suelo.getPaso()/2));
+                 break;
+      case OESTE:
+                 objeto.addPoint((a*suelo.getPaso())+suelo.getX()+espacio,(b*suelo.getPaso())+suelo.getY()+(suelo.getPaso()/2));
+                 objeto.addPoint((a*suelo.getPaso())+suelo.getX()+suelo.getPaso()-espacio,(b*suelo.getPaso())+suelo.getY()+espacio);
+                 objeto.addPoint((a*suelo.getPaso())+suelo.getX()+suelo.getPaso()-espacio,(b*suelo.getPaso())+suelo.getY()+suelo.getPaso()-espacio);
+                 break;
+    }
+    return objeto;
+  }
+
+
+}

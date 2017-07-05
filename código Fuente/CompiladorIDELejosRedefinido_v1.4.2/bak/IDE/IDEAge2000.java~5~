@@ -1,0 +1,33 @@
+package IDE;
+
+import javax.swing.*;
+import java.awt.*;
+
+
+public class IDEAge2000 extends JFrame {
+  BorderLayout borderLayout1 = new BorderLayout();
+  Pantalla compiladorIDE;
+
+  public IDEAge2000() {
+    try {
+      jbInit();
+    }
+    catch(Exception e) {
+      e.printStackTrace();
+    }
+  }
+  private void jbInit() throws Exception {
+    this.setIconImage(null);
+    this.setLocale(java.util.Locale.getDefault());
+    this.setResizable(false);
+    this.getContentPane().setLayout(borderLayout1);
+    this.setSize(800,600);
+    this.setTitle("");
+    compiladorIDE = new Pantalla();
+    compiladorIDE.setVisible(true);
+    this.getContentPane().add(compiladorIDE, null);
+  }
+
+
+
+}

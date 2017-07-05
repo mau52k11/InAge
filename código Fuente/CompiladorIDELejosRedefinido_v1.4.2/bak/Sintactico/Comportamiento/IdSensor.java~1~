@@ -1,0 +1,34 @@
+package Sintactico.Comportamiento;
+
+public class TIdSensor{
+  private Sintactico.TSintactico sintactico;
+  private int follow_set[]={22,6,7,124};//variable, op_logicos, inicio
+  private int header_set[]={113,102,108,122};// finConducta,acciones,entonces,hacer
+
+  public TIdSensor(Sintactico.TSintactico sint){
+  sintactico = sint;
+  }
+
+  public void analisis()throws Exception{
+  try{
+      int temp=0;
+      if(sintactico.compara(10))
+        sintactico.comparar(10);
+//      sintactico.verifica_entrada(22,follow_set,header_set);
+      if(sintactico.compara(22)){
+        temp=sintactico.es_variable();
+        sintactico.existe_var_tipo(temp, follow_set, header_set);
+        }
+      else
+        sintactico.error("No especificó ningún sensor");
+  }
+  catch(Sintactico.TExcepcionPR ex){
+    sintactico.error("No se permite usar Palabras Reservadas como variables");
+  }
+  catch(Sintactico.TExcepcionAtras ex){
+    sintactico.error("No especificó sensor en la condición");
+  }
+
+  }//fin de analisis()
+
+}// fin de la clase TInstrucciones

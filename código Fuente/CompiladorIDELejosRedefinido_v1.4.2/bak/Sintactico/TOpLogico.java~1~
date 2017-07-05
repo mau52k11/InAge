@@ -1,0 +1,17 @@
+package Sintactico;
+
+public class TOpLogico{
+  private Sintactico.TSintactico sintactico;
+
+  public TOpLogico(Sintactico.TSintactico sint){
+  sintactico = sint;
+  }
+
+  public void analisis(){
+  if(sintactico.compara(6))
+     sintactico.comparar(6);
+  if(sintactico.compara(7))
+     sintactico.comparar(7);
+  }//fin de analisis()
+
+}// fin de la clase TOpLogico

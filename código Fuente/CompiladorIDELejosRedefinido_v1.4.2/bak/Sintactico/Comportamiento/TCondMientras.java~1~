@@ -1,0 +1,19 @@
+package Sintactico.Comportamiento;
+
+public class TCondMientras{
+  private Sintactico.TSintactico sintactico;
+
+  public TCondMientras(Sintactico.TSintactico sint){
+  sintactico = sint;
+  }
+
+  public void analisis()throws Exception{
+  TExpresion expresion = new TExpresion(sintactico);
+  TInstrucciones instrucciones = new TInstrucciones(sintactico);
+  sintactico.comparar(125);//mientras
+  expresion.analisis();
+  sintactico.comparar(122);//hacer
+  instrucciones.analisis();
+  }
+
+}// fin de la clase TCondMientras

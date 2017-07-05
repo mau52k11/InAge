@@ -1,0 +1,48 @@
+package Sintactico.Comportamiento;
+
+public class TComportamiento{
+  private Sintactico.TSintactico sintactico;
+  private int follow_set[]={105};//conducta, finConducta
+  private int header_set[]={102};// acciones
+
+  public TComportamiento(Sintactico.TSintactico sint){
+  sintactico = sint;
+  }
+
+  public void analisis() throws Exception{
+  try{
+  int renIni=0, renFin=0;
+  TSensores sensores= new TSensores(sintactico);
+  TConductas conductas = new TConductas(sintactico);
+  Sintactico.TEnteros enteros= new Sintactico.TEnteros(sintactico);
+  renIni=sintactico.renglon();
+  sintactico.comparar(106);
+//sintactico.comparar(18);
+  renFin=sintactico.renglon();
+  sintactico.compararDel(18,renIni,renFin);
+  sensores.analisis();
+  sintactico.verifica_entrada(107, follow_set, header_set);
+  if(sintactico.compara(107))
+    enteros.analisis(7);// variable de tipo:entero-comportamiento = 7
+  sintactico.verifica_entrada(105, follow_set, header_set);
+  conductas.analisis();
+  sintactico.reporte_globales(7); // reporta warnings - sin uso de variables globales (entero)
+  sintactico.reporte_globales(4); // reporta warnings - sin uso de variables globales (tactil)
+  sintactico.reporte_globales(5); // reporta warnings - sin uso de variables globales (luz)
+  sintactico.reporte_globales(6); // reporta warnings - sin uso de variables globales (temperatura)
+  sintactico.reporte_globales(2); // reporta errores de conductas declaradas sin desarrollar
+  sintactico.eliminar_tabla_simbolos(7);// elimina las variables globales de tipo entero
+  sintactico.comparar(114); //finComportamiento
+  }
+  catch(Sintactico.TExcepcionSalirParte ex){
+    sintactico.error("No Finalizó correctamente la declaración de Comportamiento");
+  }
+  catch(Sintactico.TExcepcionAtras ex){
+    sintactico.error("TExcepcionAtras e de TComportamiento.java");
+  }
+/*  catch(Exception e){
+    sintactico.error("Exception e de TComportamiento.java");
+  }*/
+ }
+
+}// fin de la clase TComportamiento

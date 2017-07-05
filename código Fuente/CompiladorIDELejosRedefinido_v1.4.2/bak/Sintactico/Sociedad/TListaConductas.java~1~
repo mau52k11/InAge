@@ -1,0 +1,22 @@
+package Sintactico.Sociedad;
+
+public class TListaConductas{
+  private Sintactico.TSintactico sintactico;
+  private int follow_set[]={112, 115};//finAgente, finSociedad
+  // header_set[] se quitó: 102 (acciones)
+  private int header_set[]={106};// comportamiento
+
+  public TListaConductas(Sintactico.TSintactico sint){
+  sintactico = sint;
+  }
+
+  public void analisis()throws Exception{
+    TAlmConducta AlmConducta= new TAlmConducta(sintactico);
+    do{
+      AlmConducta.analisis();
+      sintactico.verifica_entrada(22, follow_set, header_set);
+    }while(sintactico.compara(22));
+  }
+
+
+}// fin de la clase TListaConductas

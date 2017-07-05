@@ -1,0 +1,30 @@
+package Herramientas;
+
+class TNodoLista{
+  public TNodoLista next;
+  private int renglon;
+  private String descripcion;
+
+  public TNodoLista( int r, String d){
+    renglon=r;
+    descripcion = d;
+    next=null;
+  }
+
+  public void recorre(){
+    System.out.println("renglón: " + renglon + "-->" + descripcion);
+  }
+
+  public String getStringNodo(){
+    return " "+renglon+" --> "+descripcion;
+  }
+
+  public int getRow(){
+    return renglon;
+  }
+
+  public String getDesc(){
+    return descripcion;
+  }
+
+}

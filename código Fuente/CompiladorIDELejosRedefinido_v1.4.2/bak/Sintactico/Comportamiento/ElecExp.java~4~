@@ -1,0 +1,34 @@
+package Sintactico.Comportamiento;
+
+public class ElecExp{
+  private Sintactico.AnalizadorSintactico sintactico;
+  private int follow_set[]={6,7,124,108,122};// op_logicos,inicio,entonces,hacer
+  private int header_set[]={113,114,102};// finConducta,finComportamiento,acciones
+
+  public ElecExp(Sintactico.AnalizadorSintactico sint){
+  sintactico = sint;
+  }
+
+  public void analisis()throws Exception{
+  try{
+    int temp=0;
+    IdSensor idSensor = new IdSensor(sintactico);
+    Sintactico.OpRelacional opRelacional = new Sintactico.OpRelacional(sintactico);
+
+    if(sintactico.compara(22)){
+      temp=sintactico.es_variable();
+    }
+    if((temp>=4 & temp<=6) || (temp>=9 & temp<=16) || sintactico.compara(10) )
+      idSensor.analisis();
+    else
+      expRelacional.analisis();
+    }
+  catch(Sintactico.ExcepcionAtras ex){
+    sintactico.error("No declaró correctamente la condición");
+  }
+  catch(Sintactico.ExcepcionPR ex){
+    sintactico.error("No se pueden utilizar palabras reservadas como variables");
+  }
+  }//fin de analisis()
+
+}// fin de la clase TInstrucciones

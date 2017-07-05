@@ -1,0 +1,90 @@
+sociedad:
+
+  agente agente1:
+
+    evitar_obstaculos;
+
+    caminar; 
+
+  finAgente 
+
+ 
+
+  agente agente2:
+
+    evitar_obstaculos;
+
+    caminar;
+
+  finAgente
+
+ 
+
+finSociedad
+
+ 
+
+comportamiento:
+
+ 
+
+ tactil sensor_frente(SENSOR_1);
+
+ luz sensor_luz (SENSOR_2);
+
+ 
+
+  conducta caminar: 
+
+          si sensor_luz < 30 entonces
+
+             solicita dar_un_paso;
+
+          otro 
+
+             solicita caminar_atras;
+
+  finConducta
+
+ 
+
+  conducta evitar_obstaculos:
+
+     si sensor_frente == 1 entonces
+
+        solicita gira;
+
+ 
+
+  finConducta
+
+ 
+
+finComportamiento
+
+ 
+
+acciones:
+
+  accion caminar_atras:
+
+     retrocede;
+
+  finAccion 
+
+  accion dar_un_paso:
+
+     avanza;
+
+  finAccion
+
+  accion gira:
+
+     giraDer;  
+
+  finAccion
+
+finAcciones
+
+ 
+

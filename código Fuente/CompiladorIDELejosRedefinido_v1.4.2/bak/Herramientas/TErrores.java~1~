@@ -1,0 +1,59 @@
+package Herramientas;
+
+public class TErrores{
+  private TNodoLista raiz;
+  private TNodoLista hoja;
+
+  public TErrores(){
+  raiz=hoja=null;
+  }
+
+  public boolean vacio(){
+  if(raiz==null)
+    return true;
+  else
+    return false;
+  }
+
+  public void insertar(int r, String d){
+  if(raiz==null)
+    raiz = hoja = new TNodoLista(r,d);
+  else
+    hoja = hoja.next = new TNodoLista(r,d);
+  }
+
+  public void imprimir(){
+  TNodoLista temp;
+  temp = raiz;
+  while(temp!=null){
+    temp.recorre();
+    temp = temp.next;
+  }
+  }
+
+  public int getCountNodo(){
+  int count=0;
+  TNodoLista temp;
+  temp = raiz;
+  while(temp!=null){
+    count++;
+    temp = temp.next;
+  }
+  return count;
+  }
+
+  public String getRowDesc(int nodo){
+  TNodoLista temp;
+  temp = raiz;
+  for(int i=1; i<nodo && temp!=null; i++) temp = temp.next;
+  if(temp!=null) return temp.getStringNodo(); else return "";
+  }
+
+  public TNodoLista getNodo(int nodo){
+    TNodoLista temp;
+    temp = raiz;
+    for(int i=1; i<nodo && temp!=null; i++) temp = temp.next;
+    return temp;
+  }
+
+}

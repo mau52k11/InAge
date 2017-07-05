@@ -1,0 +1,25 @@
+package Herramientas;
+
+class TNodoSimbolo{
+  public int tipo;
+  public int valor;
+  public String nombre;
+  public boolean uso;
+  public TNodoSimbolo next;
+
+  public TNodoSimbolo( String nom, int t, int v){
+    nombre = nom;
+    tipo = t;
+    valor = v;
+    uso = false;
+    next=null;
+  }
+
+  public void recorre(){
+    if(uso==false)
+      System.out.println("Nombre: " + nombre + " tipo:" + tipo + " valor:" + valor + " uso:false");
+    else
+     System.out.println("Nombre: " + nombre + " tipo:" + tipo + " valor:" + valor + " uso:true");
+  }
+
+}
